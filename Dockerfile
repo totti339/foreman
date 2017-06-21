@@ -12,7 +12,8 @@ RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor
 
 # Install Foreman-Installer
-RUN wget -q https://deb.theforeman.org/pubkey.gpg -O- | apt-key add - && \
+RUN apt-get -y install wget && \
+    wget -q https://deb.theforeman.org/pubkey.gpg -O- | apt-key add - && \
     echo "deb http://deb.theforeman.org/ xenial $FOREMAN_RELEASE" > /etc/apt/sources.list.d/foreman.list && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
